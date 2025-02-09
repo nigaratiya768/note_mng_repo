@@ -54,11 +54,12 @@ const updateNote = async (req, res) => {
     if (!note) {
       return res.send("note did not found");
     }
-    const { updateTitle, updateContent, updateTags } = req.body;
+    const { updateTitle, updateContent, updateTag } = req.body;
     note.title =
       updateTitle == "" || updateTitle == undefined ? note.title : updateTitle;
     note.content =
       updateContent == "" || updateContent ? note.content : updateContent;
+    note.tags.push(updateTag);
     await note.save();
     return res.json({ data: note, msg: "note updated" });
   } catch (error) {

@@ -16,8 +16,8 @@ const PORT = 4000;
 app.post("/api/notes", addNotes);
 app.get("/api/notes", getNotes);
 app.get("/api/notes/:id", getNote);
-app.put("/api/note/:id", updateNote);
-app.delete("/api/notes/id", deleteNote);
+app.put("/api/notes/:id", updateNote);
+app.delete("/api/notes/:id", deleteNote);
 
 app.listen(PORT, () => {
   console.log("server is running");

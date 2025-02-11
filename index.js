@@ -7,11 +7,13 @@ const {
   deleteNote,
 } = require("./controller/notes_control");
 const { connectDB } = require("./connect_database/connect_withDB");
+const user_router = require("./route/user_routes");
 const app = express();
 connectDB();
 app.use(express.json());
 
 const PORT = 4000;
+app.use("/api", user_router);
 
 app.post("/api/notes", addNotes);
 app.get("/api/notes", getNotes);

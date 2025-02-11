@@ -29,7 +29,9 @@ const addNotes = async (req, res) => {
 
 const getNotes = async (req, res) => {
   try {
-    const notes = await Note.find();
+    console.log(req.query);
+    const { title } = req.query;
+    const notes = await Note.find(title ? { title: title } : {});
     return res.json(notes);
   } catch (error) {
     console.log("erron on getNotes", error);

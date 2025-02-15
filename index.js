@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const {
   addNotes,
@@ -12,7 +13,8 @@ const app = express();
 connectDB();
 app.use(express.json());
 
-const PORT = 4000;
+console.log("env", process.env.NODE_ENV);
+const PORT = process.env.NODE_ENV == "development" ? 4000 : 80;
 app.use("/api", user_router);
 
 app.get("/", (req, res) => {
@@ -25,5 +27,5 @@ app.put("/api/notes/:id", updateNote);
 app.delete("/api/notes/:id", deleteNote);
 
 app.listen(PORT, () => {
-  console.log("server is running");
+  console.log(`server is running ${PORT}`);
 });

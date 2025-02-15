@@ -15,6 +15,9 @@ app.use(express.json());
 const PORT = 4000;
 app.use("/api", user_router);
 
+app.get("/", (req, res) => {
+  res.send("hello world!");
+});
 app.post("/api/notes", addNotes);
 app.get("/api/notes", getNotes);
 app.get("/api/notes/:id", getNote);
